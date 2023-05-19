@@ -157,5 +157,3 @@ print ('El slado en cuenta sera de:',saldo (mov))
 
 
 # 9.
-def tres_vocales_distintas (p : str) -> bool:
-    if 
