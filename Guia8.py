@@ -87,3 +87,75 @@ s : list = ['Hola', 'Palabra', 'Pala']
 print ('Si s es:',s)
 print ('s tiene una palabra de mas de 7 letras?', longitud_mayor_a_7(s))
 
+
+# 6.
+def es_palindroma (f : str) -> bool:
+    if f == f[::-1]:
+        res = True
+    
+    else:
+        res = False
+    
+    return res
+
+
+print ('\n 6.')
+f : str = 'neuquen ama neuquen'
+print ('Si la frase es:',f)
+print ('Es palindromo?',es_palindroma (f))
+
+f : str = 'esta lloviendo'
+print ('Si la frase es:',f)
+print ('Es palindromo?',es_palindroma (f))
+
+
+# 7.
+def valid_password (password : str) -> str:
+    if len (password) > 8:
+        if not password.islower():
+            if not password.isupper():
+                if not password.isalpha():
+                    return 'VERDE'
+    
+    elif len (password) < 5:
+        return 'ROJA'
+
+    else:
+        return 'AMARILLA'
+
+
+print ('\n 7.')
+password : str = 'Zapatilla01'
+print ('Si la contraseña es:',password)
+print (valid_password (password))
+
+password : str = 'Zap2'
+print ('Si la contraseña es:',password)
+print (valid_password (password))
+
+password : str = 'zapato3'
+print ('Si la contraseña es:',password)
+print (valid_password (password))
+
+
+# 8.
+def saldo (mov : list) -> float:
+    saldo = 0
+    for i in mov:
+        if i[0] == 'I':
+            saldo += i[1]
+
+        else:
+            saldo -= i[1]
+
+    return saldo
+
+print ('\n 8.')
+mov = [('I',1200),('I',1800),('R',850),('I',400),('',1370)]
+print ('Si los movimientos fueron:',mov)
+print ('El slado en cuenta sera de:',saldo (mov))
+
+
+# 9.
+def tres_vocales_distintas (p : str) -> bool:
+    if 
