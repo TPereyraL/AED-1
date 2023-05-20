@@ -157,3 +157,29 @@ print ('El slado en cuenta sera de:',saldo (mov))
 
 
 # 9.
+def vocales_dif (p : str) -> bool:
+    vocales: list = ['A','E','I','O','U']
+    palabra: str = p.upper()
+    
+    for i in range(len(palabra)):
+        if palabra[i] in vocales:
+            if len(vocales) > 3:
+                vocales.remove(palabra[i])
+
+    if len(vocales) <= 3:
+        res = True
+
+    else:
+        res = False
+
+    return res
+
+
+print ('\n 9.')
+p = 'Palabras'
+print ('Si la palabra es:', p)
+print ('Entonces la palabra tiene mas de tres vocales:', vocales_dif(p))
+
+p = 'Maravilloso'
+print ('Si la palabra es:', p)
+print ('Entonces la palabra tiene mas de tres vocales:', vocales_dif(p))
