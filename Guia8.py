@@ -120,8 +120,7 @@ def valid_password (password : str) -> str:
     elif len (password) < 5:
         return 'ROJA'
 
-    else:
-        return 'AMARILLA'
+    return 'AMARILLA'
 
 
 print ('\n 7.')
@@ -183,3 +182,92 @@ print ('Entonces la palabra tiene mas de tres vocales:', vocales_dif(p))
 p = 'Maravilloso'
 print ('Si la palabra es:', p)
 print ('Entonces la palabra tiene mas de tres vocales:', vocales_dif(p))
+
+
+#Ejercicio 2
+
+# 1.
+def pares_por_ceros (lista : list):
+    for i in range(len(lista)):
+        if lista[i] % 2 == 0:
+            lista[i] = 0
+        
+print ("\n 1.")
+
+lista: list = [1,2,3,4,5,6]
+print ("Si la lista es:", lista)
+pares_por_ceros (lista)
+print ("La lista pares por ceros sera:", lista)
+
+
+# 2.
+def pares_por_ceros_out (lista : list) -> list:
+    lista_new: list = lista.copy()
+    for i in range(len(lista)):
+        if lista_new[i] % 2 == 0:
+            lista_new[i] = 0
+    
+    return
+
+print ("\n 2.")
+
+lista: list = [1,2,3,4,5,6]
+print ("Si la lista es:", lista)
+print ("La lista pares por ceros sera:", pares_por_ceros (lista))
+
+
+# 3.
+def sin_vocales (p : str) -> str:
+    p_mayus : str = p.upper()
+    res : str = ""
+    vocales : list = ['A','E','I','O','U']
+    for i in range(len(p)):
+        if not (p_mayus[i] in vocales):
+            res = res + (p[i])
+        
+    return res
+
+print ("\n 3.")
+
+p : str = "Salamin"
+print ("Si la cadena es:", p)
+print ("La cadena sin vocales sera:", sin_vocales(p))
+
+
+# 4.
+def reemplazaVocales (p : str) -> str:
+    p_mayus : str = p.upper()
+    res : str = ""
+    vocales : list = ['A','E','I','O','U']
+    for i in range(len(p)):
+        if not (p_mayus[i] in vocales):
+            res = res + (p[i])
+        else:
+            res = res + "_"
+    
+    return res
+
+print ("\n .")
+
+p : str = "Reemplazar"
+print ("Si la cadena es:", p)
+print ("La cadena sin vocales sera:", reemplazaVocales(p))
+
+
+# 5.
+def daVueltaStr (p : str) -> str:
+    res : str = ""
+    for i in range(1,len(p) + 1):
+        res = res + p[len(p) - i]
+
+    return res
+
+
+print ('\n 5.')
+f : str = 'neuquen ama neuquen'
+print ('Si la frase es:',f)
+print ('Dada vuelta:',daVueltaStr (f))
+
+f : str = 'esta lloviendo'
+print ('Si la frase es:',f)
+print ('Dada vuelta:',daVueltaStr (f))
