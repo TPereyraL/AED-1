@@ -1,5 +1,6 @@
 # Ejercicio 1
 print ('Ejercicio 1')
+
 # 1.
 def pertenece (s: list,e: int) -> bool:
     res = False
@@ -141,7 +142,7 @@ print (valid_password (password))
 def saldo (mov : list) -> float:
     saldo = 0
     for i in mov:
-        if i[0] == 'I':
+        if i[0] == 'C':
             saldo += i[1]
 
         else:
@@ -150,9 +151,9 @@ def saldo (mov : list) -> float:
     return saldo
 
 print ('\n 8.')
-mov = [('I',1200),('I',1800),('R',850),('I',400),('',1370)]
+mov = [('C',1200),('C',1800),('D',850),('C',400),('D',1370)]
 print ('Si los movimientos fueron:',mov)
-print ('El slado en cuenta sera de:',saldo (mov))
+print ('El saldo en cuenta sera de:',saldo (mov))
 
 
 # 9.
@@ -185,6 +186,7 @@ print ('Entonces la palabra tiene mas de tres vocales:', vocales_dif(p))
 
 
 #Ejercicio 2
+print ('\nEjercicio 2')
 
 # 1.
 def pares_por_ceros (lista : list):
@@ -207,7 +209,7 @@ def pares_por_ceros_out (lista : list) -> list:
         if lista_new[i] % 2 == 0:
             lista_new[i] = 0
     
-    return
+    return lista_new
 
 print ("\n 2.")
 
@@ -271,3 +273,89 @@ print ('Dada vuelta:',daVueltaStr (f))
 f : str = 'esta lloviendo'
 print ('Si la frase es:',f)
 print ('Dada vuelta:',daVueltaStr (f))
+
+
+#Ejercicio 3
+print ('\nEjercicio 3')
+
+# 1.
+def lista_estudiantes () -> list:
+    lista : list = []
+    nombre: str = input('Ingrese el nombre del alumno ("listo" para terminar):')
+
+    while nombre != 'listo':
+        lista.append(nombre.capitalize())
+        nombre = input('Ingrese el nombre del alumno ("listo" para terminar):')
+
+    return lista
+
+
+print ('\n 1.')
+lista : list = lista_estudiantes ()
+print ('Los estudiantes son:', lista)
+
+
+# 2.
+def movimientos () -> list:
+    movimientos : list = []
+    movimiento : str = input('Ingrese la operacion (“C” = Cargar, “D” = Descontar, “X” = Finalizar): ').upper()
+    monto : float = 0
+
+    while movimiento != 'X':
+        if movimiento == 'C':
+            monto = float(input('Ingrese el monto que desea cargar: '))
+            movimientos.append(('C',monto))
+
+        else:
+            monto = float(input('Inrese el monto a descontar: '))
+            movimientos.append(('D',monto))
+        
+        movimiento = input('Ingrese la operacion (“C” = Cargar, “D” = Descontar, “X” = Finalizar): ').upper()
+    return movimientos
+
+print ('\n 2.')
+mov = movimientos()
+print ('Si los movimientos fueron:', mov)
+print ('El saldo en cuenta sera de:',saldo (mov))
+
+
+import random
+# 3.
+def siete_y_medio ():
+    cartas : list = []
+    decide : str = input('Desea comenzar sacando o plantarse sin jugar (s/p): ').upper()
+    
+    while decide != 'P':
+        carta = random.randint(1,12)
+        while carta == 8 or carta == 9:
+            carta = random.randint(1,12)
+
+        if carta < 10:
+            cartas.append(carta)
+        else:
+            cartas.append(0.5)
+        
+        print ('La carta es:',carta)
+        
+        decide : str = input('Desea seguir sacando o plantarse (s/p): ').upper()
+    
+    carta = random.randint(1,12)
+    while carta == 8 or carta == 9:
+        carta = random.randint(1,12)
+
+    if carta < 10:
+            cartas.append(carta)
+    else:
+        cartas.append(0.5)
+    
+    print ('La última carta es:',carta)
+
+    if sumaTotal(cartas) <= 7.5:
+        print('Felicitaciones, ganaste.')
+
+    else:
+        print('Perdiste huevon.')
+
+print ('\n 3.')
+print ('Juguemos al siete y medio!')
+siete_y_medio()
