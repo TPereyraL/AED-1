@@ -4,8 +4,24 @@ from typing import List
 # l: List[int]  <--Este es un ejemplo para una lista de enteros.
 # Respetar esta sintaxis, ya que el CMS dirá que no pasó ningún test si usan otra notación.
 def mesetaMasLarga(l: List[int]) -> int :
-  # Implementar esta funcion
-  return 0
+    repeticiones : int = 1
+    masRepeticiones: int = 1
+    for i in range(len(l) - 1):
+        if l[i] == l[i + 1]:
+            repeticiones += 1
+            
+        else:
+            if repeticiones > masRepeticiones:
+                masRepeticiones = repeticiones
+
+            repeticiones = 1
+    if repeticiones > masRepeticiones:
+        masRepeticiones = repeticiones
+
+    if l == []:
+        masRepeticiones = 0
+
+    return masRepeticiones
 
 if __name__ == '__main__':
   x = input()
