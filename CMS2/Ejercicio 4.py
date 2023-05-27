@@ -29,16 +29,6 @@ def filasParecidas(matriz: List[List[int]]) -> bool :
     return res
 
 
-if __name__ == '__main__':
-  filas = int(input())
-  columnas = int(input())
- 
-  matriz = []
- 
-  for i in range(filas):         
-    fila = input()
-    if len(fila.split()) != columnas:
-      print("Fila " + str(i) + " no contiene la cantidad adecuada de columnas")
-    matriz.append([int(j) for j in fila.split()])
-  
-  print(filasParecidas(matriz))
+matriz = [[1,4],[8,10]]
+print('Si la matriz es:',matriz)
+print('La matriz tiene filas parecidas?',filasParecidas(matriz))
