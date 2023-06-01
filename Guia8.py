@@ -291,7 +291,7 @@ def lista_estudiantes () -> list:
 
 
 print ('\n 1.')
-lista : list = lista_estudiantes ()
+#lista : list = lista_estudiantes ()
 print ('Los estudiantes son:', lista)
 
 
@@ -314,9 +314,9 @@ def movimientos () -> list:
     return movimientos
 
 print ('\n 2.')
-mov = movimientos()
-print ('Si los movimientos fueron:', mov)
-print ('El saldo en cuenta sera de:',saldo (mov))
+#mov = movimientos()
+#print ('Si los movimientos fueron:', mov)
+#print ('El saldo en cuenta sera de:',saldo (mov))
 
 
 import random
@@ -358,5 +358,31 @@ def siete_y_medio ():
 
 print ('\n 3.')
 print ('Juguemos al siete y medio!')
-siete_y_medio()
+#siete_y_medio()
 
+
+#Ejercicio 4
+print ('\nEjercicio 4')
+
+def pertenece(s: list, e) -> bool:
+    res: bool = False
+    for i in s:
+        if e == i:
+            res = True
+    return res
+
+def perteneceACadaUno (s: list, e: int) -> list:
+    res: list = []
+    for i in s:
+        if pertenece (i,e):
+            res.append(True)
+        else:
+            res.append(False)
+    return res
+
+print ('\n 1.')
+s = [[1,2,3],[2,4,5],[1,3,5],[1,1,1],[2,4,2,4]]
+print('Si la lista de listas es:',s)
+e = 1
+print('Y el entero es:',e)
+print('Entonces "perteneceACadaUno" devuelve', perteneceACadaUno(s,e))
