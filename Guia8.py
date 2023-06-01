@@ -359,3 +359,8 @@ def siete_y_medio ():
 print ('\n 3.')
 print ('Juguemos al siete y medio!')
 siete_y_medio()
+
+
+# a ver si sube
+def cero():
+    return 0
