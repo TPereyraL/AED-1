@@ -364,6 +364,8 @@ print ('Juguemos al siete y medio!')
 #Ejercicio 4
 print ('\nEjercicio 4')
 
+# 1.
+
 def pertenece(s: list, e) -> bool:
     res: bool = False
     for i in s:
@@ -386,3 +388,19 @@ print('Si la lista de listas es:',s)
 e = 1
 print('Y el entero es:',e)
 print('Entonces "perteneceACadaUno" devuelve', perteneceACadaUno(s,e))
+
+
+# 2.
+def esMatriz (m: list) -> bool:
+    res: bool = True
+    longitud_filas: int = len(m[0])
+    for fila in m:
+        if len(fila) != longitud_filas:
+            res = False
+
+    return res
+
+print ('\n 2.')
+matriz = [[1,1],[1,3],[4,2]]
+print('Si la "matriz" es:', matriz)
+print('Es matriz?', esMatriz(matriz))
