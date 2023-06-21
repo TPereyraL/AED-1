@@ -43,7 +43,7 @@ def budget(products: Dict[str, int], prices: Dict[str, float]) -> float:
 
     for product in shop_list:
         if products[product] != 0:
-            total = total + ((products[product]) * prices[product])
+            total = total + (float(products[product]) * prices[product])
 
     return total
 
@@ -51,8 +51,9 @@ def procesado_pedido(pedido: Dict,
                      stock: Dict[str, int],
                      precios: Dict[str, float]) -> Dict:
     pedido_procesado: Dict = pedido
-    pedido_procesado['estado'] = stock_check(pedido_procesado['productos'], stock)
+    estados = stock_check(pedido_procesado['productos'], stock)
     pedido_procesado['precio_total'] = budget(pedido_procesado['productos'], precios)
+    pedido_procesado['estado'] = estados
 
 
     return pedido_procesado
@@ -66,75 +67,88 @@ def procesamiento_pedidos(pedidos: Queue,
     pedidos_precesados: List[Dict[str, Union[int, str, float, Dict[str, int]]]] = []
     
     while not pedidos.empty():
-        pedidos_precesados.append(procesado_pedido(pedidos.get(),stock_productos,precios_productos))
+        pedido = pedidos.get()
+        print('Pedido sin procesar:\n',pedido)
+        pedidos_precesados.append(procesado_pedido(pedido,stock_productos,precios_productos))
+        print('Pedido procesado:\n',pedido)
+        print('Stock Despues:\n', stock_productos)
   
     return pedidos_precesados
 
 
-# Creación de los pedidos según el input
+#Testing
+pedidos = Queue()
+
 pedido1 = {
     'id': 21,
     'cliente': 'Gabriela',
-    'productos': {'Manzana': 4}
+    'productos': {'Manzana': 2}
 }
+print('Pedido 1:')
+print(pedido1)
+pedidos.put(pedido1)
 
 pedido2 = {
     'id': 1,
     'cliente': 'Juan',
     'productos': {'Manzana': 2, 'Pan': 4, 'Factura': 6}
 }
-
-from queue import Queue
-
-pedidos = Queue()
-
-pedido1 = {
-    'id': 1,
-    'cliente': 'Laura',
-    'productos': {'producto1': 2, 'producto2': 3}
-}
-
-pedido2 = {
-    'id': 2,
-    'cliente': 'Carlos',
-    'productos': {'producto3': 1, 'producto4': 4}
-}
-
-pedidos.put(pedido1)
+print('Pedido 2:')
+print(pedido2)
 pedidos.put(pedido2)
 
-stock_productos = {'producto1': 5, 'producto2': 2}
-precios_productos = {'producto1': 2.5, 'producto2': 3.0, 'producto3': 4.5, 'producto4': 6.0}
+pedido3 = {
+    'id': 3,
+    'cliente': 'Pedro',
+    'productos': {'Naranja': 3, 'Leche': 1}
+}
+print('Pedido 3:')
+print(pedido3)
+pedidos.put(pedido3)
 
-resultado = procesamiento_pedidos(pedidos, stock_productos, precios_productos)
+pedido4 = {
+    'id': 4,
+    'cliente': 'María',
+    'productos': {'Manzana': 1, 'Banana': 5, 'Yogur': 2}
+}
+print('Pedido 4:')
+print(pedido4)
+pedidos.put(pedido4)
 
-for pedido in resultado:
-    print(pedido)
-
-
-from queue import Queue
-
-pedidos = Queue()
-
-pedido1 = {
-    'id': 1,
+pedido5 = {
+    'id': 5,
     'cliente': 'Laura',
-    'productos': {'producto1': 2, 'producto2': 3}
+    'productos': {'Pan': 3, 'Lechuga': 2, 'Tomate': 4, 'Sandia': 1}
+}
+print('Pedido 5:')
+print(pedido5)
+pedidos.put(pedido5)
+
+
+stock_productos = {
+    'Manzana': 8,
+    'Pan': 10,
+    'Factura': 5,
+    'Naranja': 6,
+    'Leche': 3,
+    'Banana': 7,
+    'Yogur': 4,
+    'Lechuga': 2,
+    'Tomate': 9
 }
 
-pedido2 = {
-    'id': 2,
-    'cliente': 'Carlos',
-    'productos': {'producto3': 1, 'producto4': 4}
+precios_productos = {
+    'Manzana': 2.5,
+    'Pan': 1.5,
+    'Factura': 2.0,
+    'Naranja': 1.0,
+    'Leche': 3.0,
+    'Banana': 0.5,
+    'Yogur': 1.8,
+    'Lechuga': 0.75,
+    'Tomate': 0.9
 }
 
-pedidos.put(pedido1)
-pedidos.put(pedido2)
 
-stock_productos = {'producto1': 5, 'producto2': 2}
-precios_productos = {'producto1': 2.5, 'producto2': 3.0, 'producto3': 4.5, 'producto4': 6.0}
-
-resultado = procesamiento_pedidos(pedidos, stock_productos, precios_productos)
-
-for pedido in resultado:
-    print(pedido)
+print('Stock Antes:\n', stock_productos)
+procesamiento_pedidos(pedidos, stock_productos, precios_productos)

@@ -19,6 +19,7 @@ def stock_check (products: Dict [str,int], stock: Dict[str, int]) -> str:
             #products es modificado (inout)
             products[product] = 0
 
+        #si esta en los productos del stock
         else:
             if stock[product] < products[product]:
                 status = 'incompleto' 
@@ -27,7 +28,7 @@ def stock_check (products: Dict [str,int], stock: Dict[str, int]) -> str:
 
                 stock[product] = 0
 
-
+            #si hay stock suficiente
             else:
                 #stock es modificado (inout)
                 left: int = stock[product] - products[product]
@@ -43,7 +44,7 @@ def budget(products: Dict[str, int], prices: Dict[str, float]) -> float:
 
     for product in shop_list:
         if products[product] != 0:
-            total = total + ((products[product]) * prices[product])
+            total = total + (float(products[product]) * prices[product])
 
     return total
 
@@ -51,8 +52,9 @@ def procesado_pedido(pedido: Dict,
                      stock: Dict[str, int],
                      precios: Dict[str, float]) -> Dict:
     pedido_procesado: Dict = pedido
-    pedido_procesado['estado'] = stock_check(pedido_procesado['productos'], stock)
+    estados = stock_check(pedido_procesado['productos'], stock)
     pedido_procesado['precio_total'] = budget(pedido_procesado['productos'], precios)
+    pedido_procesado['estado'] = estados
 
 
     return pedido_procesado
@@ -69,7 +71,6 @@ def procesamiento_pedidos(pedidos: Queue,
         pedidos_precesados.append(procesado_pedido(pedidos.get(),stock_productos,precios_productos))
   
     return pedidos_precesados
-
 
 
 if __name__ == '__main__':

@@ -1,0 +1,1 @@
+print('Caja1' == ('Caja2' or 'Caja1'))
