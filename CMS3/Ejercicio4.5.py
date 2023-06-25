@@ -62,10 +62,10 @@ def avanzarFila(fila: Queue, min: int):
   while minuto <= min:
     if minuto % 4 == 0:
       ultimo_fila += 1
-      print(ultimo_fila)
-      print(list(fila.queue))
+      # print(ultimo_fila)
+      # print(list(fila.queue))
       fila.put(ultimo_fila)
-      print(list(fila.queue))
+      # print(list(fila.queue))
       
       
     
@@ -76,17 +76,15 @@ def avanzarFila(fila: Queue, min: int):
     minuto += 1
 
 
-fila = Queue()
+# fila = Queue()
 
 
-print('Fila al iniciar:\n[]')
+# print('Fila al iniciar:\n[]')
 
 
-min = 5
-avanzarFila(fila,min)
+# min = 4 
+# avanzarFila(fila,min)
 
-print('Fila a los', min, 'minutos:')
-
-print(list(fila.queue))
-for i in range(fila.qsize()):
-  print(fila.get())
+# print('Fila a los', min, 'minutos:')
+# fila_list: list = list(fila.queue)
+# print(fila_list)
